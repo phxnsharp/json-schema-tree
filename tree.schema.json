@@ -59,10 +59,10 @@
         },
         "node": {
             "oneOf": [
-                { "$ref": "#/$defs/leafA" },
-                { "$ref": "#/$defs/leafB" },
-                { "$ref": "#/$defs/containerA" },
-                { "$ref": "#/$defs/containerB" }
+                { "allOf": [{ "properties": {"type": {"const": "LeafA"}}}, { "$ref": "#/$defs/leafA" }]},
+                { "allOf": [{ "properties": {"type": {"const": "LeafB"}}}, { "$ref": "#/$defs/leafB" }]},
+                { "allOf": [{ "properties": {"type": {"const": "ContainerA"}}}, { "$ref": "#/$defs/containerA" }]},
+                { "allOf": [{ "properties": {"type": {"const": "ContainerB"}}}, { "$ref": "#/$defs/containerB" }]}
             ]
         }
     },

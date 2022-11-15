@@ -1,0 +1,75 @@
+{
+    "$id": "https://my.domain.com/rev00/tree",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$defs": { 
+        "_node": {
+            "type": "object",
+            "properties": {
+                "commonProperty": {
+                    "type": "string"
+                }
+            }
+        },
+        "leafA": {
+            "type": "object",
+            "allOf": [ { "$ref": "#/$defs/_node" } ],
+            "required": [ "type", "leafAProperty" ],
+            "properties": {
+                "type": { "const": "LeafA" },
+                "leafAProperty": {
+                    "type": "string"
+                }
+            }
+        },
+        "leafB": {
+            "type": "object",
+            "allOf": [ { "$ref": "#/$defs/_node" } ],
+            "required": [ "type" ],
+            "properties": {
+                "type": { "const": "LeafB" }
+            }
+        },
+        "_container": {
+            "type": "object",
+            "allOf": [ { "$ref": "#/$defs/_node" } ],
+            "properties": {
+                "children": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/$defs/node"
+                    }    
+                }
+            }
+        },
+        "containerA": {
+            "type": "object",
+            "allOf": [ { "$ref": "#/$defs/_container" } ],
+            "required": [ "type" ],
+            "properties": {
+                "type": { "const": "ContainerA" }
+            }
+        },
+        "containerB": {
+            "type": "object",
+            "allOf": [ { "$ref": "#/$defs/_container" } ],
+            "required": [ "type" ],
+            "properties": {
+                "type": { "const": "ContainerB" }
+            }
+        },
+        "node": {
+            "oneOf": [
+                { "$ref": "#/$defs/leafA" },
+                { "$ref": "#/$defs/leafB" },
+                { "$ref": "#/$defs/containerA" },
+                { "$ref": "#/$defs/containerB" }
+            ]
+        }
+    },
+    "type": "object",
+    "properties": {
+        "root": {
+            "$ref": "#/$defs/node"
+        }
+    }
+}

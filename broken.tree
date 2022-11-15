@@ -1,0 +1,21 @@
+{
+  "$schema": "https://my.domain.com/rev00/tree",
+  "root": {
+    "type": "ContainerA",
+    "children": {
+      "achild": {
+        "type": "LeafA",
+        "leafAProperty": "dummy"
+      },
+      "child2": { 
+        "type": "ContainerB",
+        "commonProperty": "value",
+        "children": {
+          "grandkid": {
+            "type": "LeafC"
+          }
+        }
+      }
+    }
+  }
+}   

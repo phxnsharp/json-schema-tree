@@ -12,7 +12,7 @@
         "commonProperty": "value",
         "children": {
           "grandkid": {
-            "type": "LeafC"
+            "type": "LeafA"
           }
         }
       }

@@ -58,11 +58,11 @@
             }
         },
         "node": {
-            "oneOf": [
-                { "$ref": "#/$defs/leafA" },
-                { "$ref": "#/$defs/leafB" },
-                { "$ref": "#/$defs/containerA" },
-                { "$ref": "#/$defs/containerB" }
+            "anyOf": [
+                { "if": { "properties": { "type": { "const": "LeafA" } }, "required": ["type"]}, "then": { "$ref": "#/$defs/leafA" } },
+                { "if": { "properties": { "type": { "const": "LeafB" } }, "required": ["type"]}, "then": { "$ref": "#/$defs/leafB" } },
+                { "if": { "properties": { "type": { "const": "ContainerA" } }, "required": ["type"]}, "then": { "$ref": "#/$defs/containerA" } },
+                { "if": { "properties": { "type": { "const": "ContainerB" } }, "required": ["type"]}, "then": { "$ref": "#/$defs/containerB" } }
             ]
         }
     },

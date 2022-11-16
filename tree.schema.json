@@ -1,6 +1,6 @@
 {
     "$id": "https://my.domain.com/rev00/tree",
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$schema": "https://json-schema.org/draft/next/schema",
     "$defs": { 
         "_node": {
             "type": "object",
@@ -58,12 +58,20 @@
             }
         },
         "node": {
-            "oneOf": [
-                { "$ref": "#/$defs/leafA" },
-                { "$ref": "#/$defs/leafB" },
-                { "$ref": "#/$defs/containerA" },
-                { "$ref": "#/$defs/containerB" }
-            ]
+            "properties": { 
+                "type": {
+                    "enum": [ "LeafA", "LeafB", "ContainerA", "ContainerB" ]
+                }
+            },
+            "required": [ "type" ],
+            "propertyDependencies": {
+                "type": {
+                    "LeafA": { "$ref": "#/$defs/leafA" },
+                    "LeafB": { "$ref": "#/$defs/leafB" },
+                    "ContainerA": { "$ref": "#/$defs/containerA" },
+                    "ContainerB": { "$ref": "#/$defs/containerB" }
+                }
+            }
         }
     },
     "type": "object",

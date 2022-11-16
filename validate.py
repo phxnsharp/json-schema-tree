@@ -12,7 +12,7 @@ import sys
 
 mydir = pathlib.Path(__file__).parent 
 
-catalog = create_catalog('2020-12')
+catalog = create_catalog('next')
 # Any call to a schema in our namespace gets mapped to the Schema folder from the local system
 catalog.add_uri_source(URI('https://my.domain.com/rev00/'), LocalSource(mydir, suffix='.schema.json'))
 

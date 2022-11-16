@@ -58,7 +58,13 @@
             }
         },
         "node": {
-            "anyOf": [
+            "properties": { 
+                "type": {
+                    "enum": [ "LeafA", "LeafB", "ContainerA", "ContainerB" ]
+                }
+            },
+            "required": [ "type" ],
+            "allOf": [
                 { "if": { "properties": { "type": { "const": "LeafA" } }, "required": ["type"]}, "then": { "$ref": "#/$defs/leafA" } },
                 { "if": { "properties": { "type": { "const": "LeafB" } }, "required": ["type"]}, "then": { "$ref": "#/$defs/leafB" } },
                 { "if": { "properties": { "type": { "const": "ContainerA" } }, "required": ["type"]}, "then": { "$ref": "#/$defs/containerA" } },

@@ -58,18 +58,33 @@
             }
         },
         "node": {
-            "properties": { 
-                "type": {
-                    "enum": [ "LeafA", "LeafB", "ContainerA", "ContainerB" ]
+            "type": "object",
+            "if": {
+                "not": { "required": ["$ref"] }
+            },
+            "else": {
+                "required": ["$ref"],
+                "properties": {
+                    "$ref": {
+                        "type": "string",
+                        "format": "uri-reference"
+                    }
                 }
             },
-            "required": [ "type" ],
-            "propertyDependencies": {
-                "type": {
-                    "LeafA": { "$ref": "#/$defs/leafA" },
-                    "LeafB": { "$ref": "#/$defs/leafB" },
-                    "ContainerA": { "$ref": "#/$defs/containerA" },
-                    "ContainerB": { "$ref": "#/$defs/containerB" }
+            "then": {
+                "properties": { 
+                    "type": {
+                        "enum": [ "LeafA", "LeafB", "ContainerA", "ContainerB" ]
+                    }
+                },
+                "required": [ "type" ],
+                "propertyDependencies": {
+                    "type": {
+                        "LeafA": { "$ref": "#/$defs/leafA" },
+                        "LeafB": { "$ref": "#/$defs/leafB" },
+                        "ContainerA": { "$ref": "#/$defs/containerA" },
+                        "ContainerB": { "$ref": "#/$defs/containerB" }
+                    }
                 }
             }
         }

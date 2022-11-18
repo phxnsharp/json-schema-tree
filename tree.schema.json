@@ -60,6 +60,7 @@
         "node": {
             "type": "object",
             "if": {
+                "$comment": "invert this if because if statements are currently less noisy in the then case. So put the more common case in the then block",
                 "not": { "required": ["$ref"] }
             },
             "else": {
